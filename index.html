@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Htetmyat Quiz Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="container">
+
+  <div id="intro" class="intro-text">Htetmyat!</div>
+  <div id="totalPoints"></div>
+
+  <div id="quizArea" class="hidden">
+    <div id="questionBox" class="question-box"></div>
+    <input type="text" id="answerInput" placeholder="သတ္တိရှိရင် ဖြေကြည့်လိုက်😒" autocomplete="off" />
+    <button id="submitBtn">Submit</button>
+    <div id="message" class="message"></div>
+  </div>
+
+  <div id="thankYou" class="hidden">
+    <div id="finalScore" class="congrats"></div>
+  </div>
+
+  <div id="restartIcon" class="restart-icon" title="Restart Quiz">
+    <div class="arrow">&#10227;</div>
+    <div class="restart-text">ပြန် ဆော့ရန်</div>
+  </div>
+
+</div>
+
+<audio id="bgMusic" src="assets/background.mp3" loop></audio>
+<audio id="correctSound" src="assets/correct.mp3"></audio>
+<audio id="wrongSound" src="assets/wrong.mp3"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
