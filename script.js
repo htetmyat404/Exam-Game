@@ -16,6 +16,11 @@ const questions = [
   },
   {
     id: 4,
+    text: "Coil ရဲ့ စာသင်ကေတတေ ဖြေဆိုပါ English!" ,
+    correctkeywords: ["L", "LB", "PL" , "FB", "B"]
+  },
+  {
+    id: 5,
     text: "Computer ပိုင်းမှာ ဘာတေရှိလဲ့ Englishလိုဖြေ?",
     correctKeywords: ["cpu", "emmc"]
   }
