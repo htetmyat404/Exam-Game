@@ -54,9 +54,8 @@ setTimeout(() => {
 
   bgMusic.play().catch(e => console.log('bgMusic play error:', e));
 
-  startQuiz();
-}, 3500);
-
+  startMusic();
+}startQuiz
 function shuffleArray(array) {
   let arr = array.slice();
   for(let i = arr.length -1; i > 0; i--) {
