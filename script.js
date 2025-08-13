@@ -16,8 +16,8 @@ const questions = [
   },
   {
     id: 4,
-    text: "Coil ရဲ့ စာသင်ကေတတေ ဖြေဆိုပါ English!" ,
-    correctkeywords: ["L", "LB", "PL" , "FB", "B"]
+    text: "Coil ရဲ့ စာသင်ကေတတေ ဖြေဆိုပါ English!",
+    correctKeywords: ["l", "lb", "pl", "fb", "b"]
   },
   {
     id: 5,
@@ -74,9 +74,10 @@ function normalizeText(text) {
     .trim();
 }
 
+// user input တစ်ခုထဲမှာ keywords အနည်းဆုံး တစ်ခု ပါရင်မှ correct ဆိုမယ်
 function isAnswerCorrect(userInput, keywords) {
   const normalizedInput = normalizeText(userInput);
-  return keywords.every(keyword => {
+  return keywords.some(keyword => {
     const normalizedKeyword = normalizeText(keyword);
     return normalizedInput.includes(normalizedKeyword);
   });
