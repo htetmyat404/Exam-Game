@@ -67,13 +67,17 @@ const bgMusic = document.getElementById('bgMusic');
 const correctSound = document.getElementById('correctSound');
 const wrongSound = document.getElementById('wrongSound');
 
+// Play bgMusic safely when user clicks anything
+function playMusicOnce() {
+  if (bgMusic.paused) {
+    bgMusic.play().catch(e => console.log('bgMusic play error:', e));
+  }
+}
+
 setTimeout(() => {
   introEl.classList.add('hidden');
   totalPointsEl.textContent = `ဖြေဆိုရမည့် အမှတ်စုစုပေါင်း: ${questions.length * POINTS_PER_QUESTION}`;
   totalPointsEl.style.animation = 'glowText 3s ease forwards';
-
-  bgMusic.play().catch(e => console.log('bgMusic play error:', e));
-
   startQuiz();
 }, 3500);
 
@@ -94,7 +98,6 @@ function normalizeText(text) {
     .trim();
 }
 
-// user input တစ်ခုထဲမှာ keywords အနည်းဆုံး တစ်ခု ပါရင်မှ correct ဆိုမယ်
 function isAnswerCorrect(userInput, keywords) {
   const normalizedInput = normalizeText(userInput);
   return keywords.some(keyword => {
@@ -112,9 +115,9 @@ function startQuiz() {
   quizArea.classList.remove('hidden');
   restartIcon.classList.remove('show');
   restartIcon.style.display = 'none';
-  showQuestion();
   messageEl.textContent = "";
   answerInput.value = "";
+  showQuestion();
   answerInput.focus();
 }
 
@@ -130,33 +133,60 @@ function showQuestion() {
 }
 
 function checkAnswer() {
+  playMusicOnce(); // Play music when answering
+
   const q = questions[randomizedOrder[currentQIndex]];
   const userAnswer = answerInput.value;
-
   const matched = isAnswerCorrect(userAnswer, q.correctKeywords);
 
-  if(matched) {
+  // correct answer text
+  const correctText = `✔ Correct answer: ${q.correctKeywords.join(", ")}`;
+
+  if (matched) {
     score += POINTS_PER_QUESTION;
-    messageEl.textContent = `Congratulations 👏🎉`;
+    messageEl.innerHTML = `Congratulations 👏🎉<br><span class="correct-ans">${correctText}</span>`;
     messageEl.className = "message congrats";
 
     correctSound.currentTime = 0;
     correctSound.play();
 
+    animateCorrectAnswer();
+
     setTimeout(() => {
       nextStep();
-    }, 1000);
+    }, 2000);
 
   } else {
-    messageEl.textContent = "စာမေးပွဲကျပီသာမှတ်!";
+    messageEl.innerHTML = `စာမေးပွဲကျပီသာမှတ်!<br><span class="correct-ans">${correctText}</span>`;
     messageEl.className = "message fail";
 
     wrongSound.currentTime = 0;
     wrongSound.play();
 
+    animateCorrectAnswer();
+
     setTimeout(() => {
       nextStep();
-    }, 1000);
+    }, 3000);
+  }
+}
+
+// animation for correct answer
+function animateCorrectAnswer() {
+  const correctAnsEl = document.querySelector('.correct-ans');
+  if (correctAnsEl) {
+    correctAnsEl.style.display = 'inline-block';
+    correctAnsEl.style.opacity = '0';
+    correctAnsEl.style.transform = 'scale(0.8)';
+    correctAnsEl.style.transition = 'all 0.6s ease';
+
+    setTimeout(() => {
+      correctAnsEl.style.opacity = '1';
+      correctAnsEl.style.transform = 'scale(1)';
+      correctAnsEl.style.color = '#00ffcc';
+      correctAnsEl.style.fontWeight = 'bold';
+      correctAnsEl.style.textShadow = '0 0 10px #00ffcc, 0 0 20px #00ffcc';
+    }, 50);
   }
 }
 
@@ -166,7 +196,6 @@ function nextStep() {
     quizArea.classList.add('hidden');
     thankYouEl.classList.remove('hidden');
     finalScoreEl.textContent = `ရော့ကွာ မင်းရတဲ့ အမှတ်🫴: ${score}`;
-
     restartIcon.style.display = 'flex';
     restartIcon.classList.add('show');
     bgMusic.pause();
@@ -184,5 +213,5 @@ answerInput.addEventListener('keyup', e => {
 restartIcon.addEventListener('click', () => {
   startQuiz();
   bgMusic.currentTime = 0;
-  bgMusic.play().catch(e => console.log('bgMusic play error:', e));
+  playMusicOnce();
 });
