@@ -140,7 +140,7 @@ function checkAnswer() {
   const matched = isAnswerCorrect(userAnswer, q.correctKeywords);
 
   // correct answer text
-  const correctText = `✔ အဖြေမှန်👉 : ${q.correctKeywords.join(", ")}`;
+  const correctText = `✔ အဖြေမှန်👉: ${q.correctKeywords.join(", ")}`;
 
   if (matched) {
     score += POINTS_PER_QUESTION;
