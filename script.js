@@ -154,7 +154,7 @@ function checkAnswer() {
 
     setTimeout(() => {
       nextStep();
-    }, 2000);
+    }, 4000);
 
   } else {
     messageEl.innerHTML = `စာမေးပွဲကျပီသာမှတ်!<br><span class="correct-ans">${correctText}</span>`;
@@ -167,7 +167,7 @@ function checkAnswer() {
 
     setTimeout(() => {
       nextStep();
-    }, 3000);
+    }, 4000);
   }
 }
 
