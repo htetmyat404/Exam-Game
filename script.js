@@ -23,6 +23,26 @@ const questions = [
     id: 5,
     text: "Computer ပိုင်းမှာ ဘာတေရှိလဲ့ Englishလိုဖြေ?",
     correctKeywords: ["cpu", "emmc"]
+  },
+  {
+    id: 6,
+    text: "Phone တစ်လုံးမှာ Battery ငုတ် ဘယ်နှစ်ငုတ်ပါလဲ့?",
+    correctKeywords: ["4", "5"]
+  },
+  {
+    id: 7,
+    text: "ဖုန်းservice လုပ်တော့မယ်ဆို အကြမ်းဖျင်း heatgun အပူ ဘယ်လောက်လဲ့? လေကရော ဘယ်လောက်လဲ့?",
+    correctKeywords: ["365", "55"]
+  },
+  {
+    id: 8,
+    text: "Crystal ရဲ့ စာသင်ကေတက ဘာလဲ့?",
+    correctKeywords: ["x", "y"]
+  },
+  {
+    id: 9,
+    text: "Phone တစ်လုံးမှာ Batteryပင် 5ပင် ပါတယ်ဆိုရင် 2ပင်က +- 2ပင်က detat(ဒီတက်😁)ဆိုရင် ကျန်တဲ့ 1ပင်က ဘာပင်ဖြစ်မလဲ့?",
+    correctKeywords: ["nc"]
   }
 ];
 
