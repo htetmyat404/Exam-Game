@@ -4,13 +4,217 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Htetmyat Quiz Game</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+body {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  margin: 0; padding: 0;
+  display: flex; justify-content: center; align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+.container {
+  background: rgba(0,0,0,0.35);
+  border-radius: 15px;
+  width: 380px;
+  padding: 30px 40px 60px 40px;
+  box-shadow: 0 0 25px rgba(255,255,255,0.2);
+  text-align: center;
+  position: relative;
+}
+.intro-text {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #ff7e5f;
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  animation: introFadeGlow 3s forwards;
+}
+@keyframes introFadeGlow {
+  0% {
+    opacity: 0;
+    text-shadow: none;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    text-shadow:
+      0 0 10px #ff7e5f,
+      0 0 20px #feb47b,
+      0 0 30px #ff7e5f,
+      0 0 40px #feb47b;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    text-shadow:
+      0 0 8px #ff7e5f,
+      0 0 15px #feb47b;
+    transform: scale(1);
+  }
+}
+.hidden { display: none; }
+.question-box {
+  margin-top: 20px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  animation: fadeInUp 0.7s ease forwards;
+  min-height: 70px;
+}
+@keyframes fadeInUp {
+  0% {opacity: 0; transform: translateY(20px);}
+  100% {opacity: 1; transform: translateY(0);}
+}
+input[type="text"] {
+  margin-top: 15px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  width: 90%;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+input[type="text"]:focus {
+  box-shadow: 0 0 8px 2px #feb47b;
+}
+button {
+  margin-top: 20px;
+  background: #ff7e5f;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  color: white;
+  font-weight: 700;
+  transition: background 0.3s ease;
+}
+button:hover {
+  background: #feb47b;
+}
+.message {
+  margin-top: 15px;
+  font-weight: 600;
+  font-size: 1.2rem;
+  min-height: 1.5em;
+}
+.congrats {
+  color: #4caf50;
+  animation: popIn 0.8s ease forwards;
+}
+.fail {
+  color: #f44336;
+  animation: shake 0.6s ease forwards;
+}
+@keyframes popIn {
+  0% {transform: scale(0.5); opacity: 0;}
+  100% {transform: scale(1); opacity: 1;}
+}
+@keyframes shake {
+  0%, 100% {transform: translateX(0);}
+  20%, 60% {transform: translateX(-10px);}
+  40%, 80% {transform: translateX(10px);}
+}
+.restart-icon {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  background: #ff7e5f;
+  padding: 30px 40px;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 3.5rem;
+  user-select: none;
+  box-shadow: 0 0 30px #feb47b;
+  display: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation-fill-mode: forwards;
+}
+.restart-icon:hover {
+  background: #feb47b;
+  transform: translateX(-50%) scale(1.1);
+}
+.restart-icon.show {
+  display: flex;
+  animation: dropPulse 1.5s ease forwards;
+}
+@keyframes dropPulse {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-150px) scale(0.7);
+    box-shadow: 0 0 0 transparent;
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(10px) scale(1.1);
+    box-shadow: 0 0 40px #feb47b, 0 0 60px #ff7e5f;
+  }
+  70% {
+    transform: translateX(-50%) translateY(-5px) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+    box-shadow: 0 0 30px #feb47b, 0 0 45px #ff7e5f;
+  }
+}
+.restart-icon .arrow {
+  animation: rotateArrow 2.5s linear infinite;
+}
+.restart-text {
+  font-size: 1.3rem;
+  margin-top: 6px;
+  font-weight: 600;
+  color: #fff;
+  user-select: none;
+  text-shadow: 0 0 12px #feb47b;
+}
+@keyframes rotateArrow {
+  0% {transform: rotate(0deg);}
+  50% {transform: rotate(15deg);}
+  100% {transform: rotate(0deg);}
+}
+#finalScore {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #43cea2, #185a9d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowText 3s ease forwards, popIn 1s ease forwards;
+  margin-top: 30px;
+}
+#totalPoints {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #feb47b;
+  text-shadow: 0 0 8px #feb47b;
+}
+@keyframes glowText {
+  0% {text-shadow: none;}
+  50% {text-shadow: 0 0 20px #43cea2, 0 0 40px #185a9d;}
+  100% {text-shadow: 0 0 10px #43cea2, 0 0 20px #185a9d;}
+}
+  </style>
 </head>
 <body>
 
 <div class="container">
 
-  <div id="intro" class="intro-text">Htetmyat!</div>
+  <div id="intro" class="intro-text">Unknown BG</div>
   <div id="totalPoints"></div>
 
   <!-- Start button: user interaction ဖြစ်အောင် -->
@@ -38,6 +242,224 @@
 <audio id="correctSound" src="assets/correct.mp3"></audio>
 <audio id="wrongSound" src="assets/wrong.mp3"></audio>
 
-<script src="script.js"></script>
+<script>
+const questions = [
+  {
+    id: 1,
+    text: "အဓိက အပိုင်း ၃ပိုင်း ကို ဖြေဆိုပါ",
+    correctKeywords: ["computer", "network", "power"]
+  },
+  {
+    id: 2,
+    text: "ဖုန်းတစ်လုံးကို စက်နှိုးဖို့ ဗို့အား အနည်းဆုံး ဘယ်လောက်ရှိရမလဲ?",
+    correctKeywords: ["3.6"]
+  },
+  {
+    id: 3,
+    text: "Network ပိုင်းမှာ နှစ်မျိုးရှိတယ် အဲ့တာဘာတေလဲ့ ?",
+    correctKeywords: ["sim လိုတဲ့ network", "sim မလိုတဲ့ network"]
+  },
+  {
+    id: 4,
+    text: "Coil ရဲ့ စာသင်ကေတတေ ဖြေဆိုပါ English!",
+    correctKeywords: ["l", "lb", "pl", "fb", "b"]
+  },
+  {
+    id: 5,
+    text: "Computer ပိုင်းမှာ ဘာတေရှိလဲ့ Englishလိုဖြေ?",
+    correctKeywords: ["cpu", "emmc"]
+  },
+  {
+    id: 6,
+    text: "Phone တစ်လုံးမှာ Battery ငုတ် ဘယ်နှစ်ငုတ်ပါလဲ့?",
+    correctKeywords: ["4", "5"]
+  },
+  {
+    id: 7,
+    text: "ဖုန်းservice လုပ်တော့မယ်ဆို အကြမ်းဖျင်း heatgun အပူ ဘယ်လောက်လဲ့? လေကရော ဘယ်လောက်လဲ့?",
+    correctKeywords: ["365", "55"]
+  },
+  {
+    id: 8,
+    text: "Crystal ရဲ့ စာသင်ကေတက ဘာလဲ့?",
+    correctKeywords: ["x", "y"]
+  },
+  {
+    id: 9,
+    text: "Phone တစ်လုံးမှာ Batteryပင် 5ပင် ပါတယ်ဆိုရင် 2ပင်က +- 2ပင်က detat(ဒီတက်😁)ဆိုရင် ကျန်တဲ့ 1ပင်က ဘာပင်ဖြစ်မလဲ့?",
+    correctKeywords: ["nc"]
+  }
+];
+
+const POINTS_PER_QUESTION = 5;
+
+let currentQIndex = 0;
+let randomizedOrder = [];
+let score = 0;
+
+const introEl = document.getElementById('intro');
+const totalPointsEl = document.getElementById('totalPoints');
+const quizArea = document.getElementById('quizArea');
+const questionBox = document.getElementById('questionBox');
+const answerInput = document.getElementById('answerInput');
+const submitBtn = document.getElementById('submitBtn');
+const messageEl = document.getElementById('message');
+const thankYouEl = document.getElementById('thankYou');
+const finalScoreEl = document.getElementById('finalScore');
+const restartIcon = document.getElementById('restartIcon');
+
+const bgMusic = document.getElementById('bgMusic');
+const correctSound = document.getElementById('correctSound');
+const wrongSound = document.getElementById('wrongSound');
+
+// Play bgMusic safely when user clicks anything
+function playMusicOnce() {
+  if (bgMusic.paused) {
+    bgMusic.play().catch(e => console.log('bgMusic play error:', e));
+  }
+}
+
+setTimeout(() => {
+  introEl.classList.add('hidden');
+  totalPointsEl.textContent = `ဖြေဆိုရမည့် အမှတ်စုစုပေါင်း: ${questions.length * POINTS_PER_QUESTION}`;
+  totalPointsEl.style.animation = 'glowText 3s ease forwards';
+  startQuiz();
+}, 3500);
+
+function shuffleArray(array) {
+  let arr = array.slice();
+  for(let i = arr.length -1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i+1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function normalizeText(text) {
+  return text
+    .toLowerCase()
+    .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?"“”‘’]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function isAnswerCorrect(userInput, keywords) {
+  const normalizedInput = normalizeText(userInput);
+  return keywords.some(keyword => {
+    const normalizedKeyword = normalizeText(keyword);
+    return normalizedInput.includes(normalizedKeyword);
+  });
+}
+
+function startQuiz() {
+  score = 0;
+  currentQIndex = 0;
+  randomizedOrder = shuffleArray(questions.map((_, i) => i));
+  introEl.classList.add('hidden');
+  thankYouEl.classList.add('hidden');
+  quizArea.classList.remove('hidden');
+  restartIcon.classList.remove('show');
+  restartIcon.style.display = 'none';
+  messageEl.textContent = "";
+  answerInput.value = "";
+  showQuestion();
+  answerInput.focus();
+}
+
+function showQuestion() {
+  const q = questions[randomizedOrder[currentQIndex]];
+  questionBox.style.animation = 'none';
+  void questionBox.offsetWidth;
+  questionBox.style.animation = null;
+  questionBox.textContent = `question🧑‍💻 ${q.id} ➡️ ${q.text}`;
+  messageEl.textContent = "";
+  answerInput.value = "";
+  answerInput.focus();
+}
+
+function checkAnswer() {
+  playMusicOnce(); // Play music when answering
+
+  const q = questions[randomizedOrder[currentQIndex]];
+  const userAnswer = answerInput.value;
+  const matched = isAnswerCorrect(userAnswer, q.correctKeywords);
+
+  // correct answer text
+  const correctText = `✔ အဖြေမှန်👉 ${q.correctKeywords.join(", ")}`;
+
+  if (matched) {
+    score += POINTS_PER_QUESTION;
+    messageEl.innerHTML = `Congratulations 👏🎉<br><span class="correct-ans">${correctText}</span>`;
+    messageEl.className = "message congrats";
+
+    correctSound.currentTime = 0;
+    correctSound.play();
+
+    animateCorrectAnswer();
+
+    setTimeout(() => {
+      nextStep();
+    }, 4000);
+
+  } else {
+    messageEl.innerHTML = `စာမေးပွဲကျပီသာမှတ်!<br><span class="correct-ans">${correctText}</span>`;
+    messageEl.className = "message fail";
+
+    wrongSound.currentTime = 0;
+    wrongSound.play();
+
+    animateCorrectAnswer();
+
+    setTimeout(() => {
+      nextStep();
+    }, 4000);
+  }
+}
+
+// animation for correct answer
+function animateCorrectAnswer() {
+  const correctAnsEl = document.querySelector('.correct-ans');
+  if (correctAnsEl) {
+    correctAnsEl.style.display = 'inline-block';
+    correctAnsEl.style.opacity = '0';
+    correctAnsEl.style.transform = 'scale(0.8)';
+    correctAnsEl.style.transition = 'all 0.6s ease';
+
+    setTimeout(() => {
+      correctAnsEl.style.opacity = '1';
+      correctAnsEl.style.transform = 'scale(1)';
+      correctAnsEl.style.color = '#00ffcc';
+      correctAnsEl.style.fontWeight = 'bold';
+      correctAnsEl.style.textShadow = '0 0 10px #00ffcc, 0 0 20px #00ffcc';
+    }, 50);
+  }
+}
+
+function nextStep() {
+  currentQIndex++;
+  if(currentQIndex >= questions.length) {
+    quizArea.classList.add('hidden');
+    thankYouEl.classList.remove('hidden');
+    finalScoreEl.textContent = `ရော့ကွာ မင်းရတဲ့ အမှတ်🫴: ${score}`;
+    restartIcon.style.display = 'flex';
+    restartIcon.classList.add('show');
+    bgMusic.pause();
+  } else {
+    showQuestion();
+    messageEl.className = "message";
+  }
+}
+
+submitBtn.addEventListener('click', checkAnswer);
+answerInput.addEventListener('keyup', e => {
+  if(e.key === 'Enter') checkAnswer();
+});
+
+restartIcon.addEventListener('click', () => {
+  startQuiz();
+  bgMusic.currentTime = 0;
+  playMusicOnce();
+});
+</script>
 </body>
 </html>
