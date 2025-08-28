@@ -96,7 +96,7 @@
       text-align: center;
       opacity: 0;
       transform: scale(0.8);
-      transition: opacity 1s ease, transform 1s ease;
+      transition: opacity 1s ease, transfonames ease;
       position: absolute;
       left: 50%;
       top: 40px;
@@ -126,7 +126,7 @@
 
     <!-- Name Box -->
     <div id="nameBox" class="hidden">
-      <div class="question-box">What is your name?</div>
+      <div class="question-box">🧑‍🏫 What is your name?</div>
       <input type="text" id="nameInput" placeholder="Enter your name..." />
       <button id="nameSubmitBtn">Confirm</button>
     </div>
@@ -134,7 +134,7 @@
     <!-- Quiz Area -->
     <div id="quizArea" class="hidden">
       <div id="questionBox" class="question-box"></div>
-      <input type="text" id="answerInput" placeholder="သတ္တိရှိရင် ဖြေကြည့်လိုက်😒" autocomplete="off" />
+      <input type="text" id="answerInput" placeholder="ဖြေဆိုရန် 📝" autocomplete="off" />
       <button id="submitBtn">အဖြေတိုက်မည်</button>
       <div id="message" class="message"></div>
     </div>
@@ -184,7 +184,7 @@ const questions = [
   
 ];
 
-const POINTS_PER_QUESTION = 5;
+const POINTS_PER_QUESTION = 2;
 let currentQIndex = 0;
 let randomizedOrder = [];
 let score = 0;
@@ -194,8 +194,7 @@ let playerName = "";
 const introEl = document.getElementById('intro');
 const totalPointsEl = document.getElementById('totalPoints');
 const quizArea = document.getElementById('quizArea');
-const questionBox = document.getElementById('questionBox');
-const answerInput = document.getElementById('answerInput');
+const questionBox = document.getElementById('questionBox');ထည့်ပေးထားပါrInput = document.getElementById('answerInput');
 const submitBtn = document.getElementById('submitBtn');
 const messageEl = document.getElementById('message');
 const thankYouEl = document.getElementById('thankYou');
@@ -210,7 +209,6 @@ const nameInput = document.getElementById('nameInput');
 const nameSubmitBtn = document.getElementById('nameSubmitBtn');
 
 /* ------------- name -> image mapping ------------- */
-/* ထည့်ထားတဲ့ နာမည်တွေအတွက် assets/names/<file>.jpg ထည့်ပေးထားပါ */
 const nameImageMap = {
   "ရှမ်းမဲ": "assets/names/shanmae.jpg",
   "ငကြွက်": "assets/names/ngakywet.jpg",
@@ -257,7 +255,7 @@ function showSpecialImage(displayName, imgSrc){
   const imgBox = document.createElement('div');
   imgBox.className = "fade-img-box";
   imgBox.innerHTML = `
-    <h2 style="margin-bottom:10px;font-size:1.6rem;color:#ffeb3b;text-shadow:0 0 10px #000;">${displayName} 🎯</h2>
+    <h2 style="margin-bottom:10px;font-size:1.6rem;color:#ffeb3b;text-shadow:0 0 10px #000;">${displayName} 😛</h2>
     <img src="${imgSrc}" style="max-width:100%;border-radius:12px;box-shadow:0 0 20px rgba(255,255,255,0.6)" />
   `;
   document.querySelector('.container').appendChild(imgBox);
@@ -266,8 +264,8 @@ function showSpecialImage(displayName, imgSrc){
   setTimeout(() => {
     imgBox.classList.remove('show');
     imgBox.classList.add('hide');
-    setTimeout(() => { imgBox.remove(); startQuiz(); }, 900);
-  }, 2200);
+    setTimeout(() => { imgBox.remove(); startQuiz(); }, 1000);
+  }, 3200);
 }
 
 /* ------------- congrats overlay ------------- */
@@ -383,7 +381,7 @@ function checkAnswer() {
     // show congrats animation overlay
     showCongratsOverlay();
 
-    setTimeout(() => { nextStep(); }, 1800);
+    setTimeout(() => { nextStep(); }, 3800);
   } else {
     messageEl.innerHTML = `စာမေးပွဲကျပီသာမှတ်!<br><span class="correct-ans">${correctText}</span>`;
     messageEl.className = "message fail";
