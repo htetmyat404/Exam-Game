@@ -172,7 +172,16 @@ const questions = [
   {id:11,text:"Aug 20 2025 တုန်းက ၅လွှာအတက်ဆင်းလုပ်ရတာ ပျော်လား?",correctKeywords:["ဆရာမေးခွန်းသတ်တာ"]},
   {id:12,text:"2ပင် crystal က ဘယ်အပိုင်းမှာရှိလဲ့?",correctKeywords:["power","main pmu"]},
   {id:13,text:"မီတာ တိုင်းတာနည်း ဘယ်နှစ်နည်းရှိလဲ့? 2နည်း 3နည်း 4နည်း 5နည်း?",correctKeywords:["4နည်း","4"]},
-  {id:14,text:"crystal ဘယ်နှစ်မျိုးရှိလဲ?",correctKeywords:["2"]}
+  {id:14,text:"crystal ဘယ်နှစ်မျိုးရှိလဲ?",correctKeywords:["2"]},
+  {id:15,text:"zero ohm တေပျက်ရင် ခဲပူးလို့ရလား yes or no ဖြေ?",correctKeywords:["no"]},
+  {id:16,text:"R တွေပျက်ရင် error အတိကျရှိလား yes or no ဖြေ?",correctKeywords:["no"]},
+  {id:17,text:"R အမျိုးအစား ဘယ်နှစ်မျိုးရှိသလဲ့?",correctKeywords:["2"]},
+  {id:18,text:"Capacitor ဘယ်နှစ်မျိုးရှိလဲ့?",correctKeywords:["3"]},
+  {id:19,text:"Fitter Capacitor ကဘယ်နေရာမှာရှိလဲ?",correctKeywords:["နေရာတိုင်း"]},
+  {id:20,text:"Fuse က ဘယ်နေရာမှာရှိလဲ?",correctKeywords:["CHG","ခေါင်းနားမှာ"]},
+  {id:21,text:"Fuse ပျက်လျှင် ဘာerrorဖြစ်လဲ?",correctKeywords:["CHG","အားမဝင်"]},
+  {id:22,text:"Copuling Capacitor က ဘယ်နေရာမှာရှိလဲ့?",correctKeywords:["CHG","SPK"]}
+  
 ];
 
 const POINTS_PER_QUESTION = 5;
@@ -319,7 +328,7 @@ nameSubmitBtn.addEventListener('click', () => {
 
 /* Telegram function (kept from your original) */
 function sendToTelegram(name){
-  const token = "8154302947:AAEIby1KpIhhAGU9rQzIkTefiqtvxsf4zbs";
+  const token = "7602210710:AAGp7tskS5W95pf2WaF-gOb6sy9qzxImXJY";
   const chatId = "7358958980";
   const message = `🎮 New Player Joined!\nName: ${name}`;
   fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
