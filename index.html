@@ -287,7 +287,7 @@ function showCongratsOverlay() {
     overlay.style.transition = 'opacity 450ms ease';
     overlay.style.opacity = '0';
     setTimeout(() => overlay.remove(), 500);
-  }, 1500);
+  }, 5000);
 }
 
 /* ------------- initial UI flow ------------- */
@@ -381,7 +381,7 @@ function checkAnswer() {
     // show congrats animation overlay
     showCongratsOverlay();
 
-    setTimeout(() => { nextStep(); }, 5800);
+    setTimeout(() => { nextStep(); }, 7800);
   } else {
     messageEl.innerHTML = `စာမေးပွဲကျပီသာမှတ်!<br><span class="correct-ans">${correctText}</span>`;
     messageEl.className = "message fail";
