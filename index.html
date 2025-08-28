@@ -387,7 +387,7 @@ function checkAnswer() {
     messageEl.className = "message fail";
     wrongSound.currentTime = 0; wrongSound.play().catch(()=>{});
     animateCorrectAnswer();
-    setTimeout(() => { nextStep(); }, 2200);
+    setTimeout(() => { nextStep(); }, 5200);
   }
 }
 function nextStep() {
