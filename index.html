@@ -1,4 +1,3 @@
-DEMO 🤏, [8/28/25 1:42 PM]
 <!DOCTYPE html>
 <html lang="my">
 <head>
@@ -84,9 +83,7 @@ DEMO 🤏, [8/28/25 1:42 PM]
       0% {opacity: 0; transform: translateX(-50%) translateY(-150px) scale(0.7); box-shadow: 0 0 0 transparent;}
       50% {opacity: 1; transform: translateX(-50%) translateY(10px) scale(1.1); box-shadow: 0 0 40px #feb47b, 0 0 60px #ff7e5f;}
       70% {transform: translateX(-50%) translateY(-5px) scale(1);}
-
-DEMO 🤏, [8/28/25 1:42 PM]
-100% {opacity: 1; transform: translateX(-50%) translateY(0) scale(1); box-shadow: 0 0 30px #feb47b, 0 0 45px #ff7e5f;}
+      100% {opacity: 1; transform: translateX(-50%) translateY(0) scale(1); box-shadow: 0 0 30px #feb47b, 0 0 45px #ff7e5f;}
     }
     .restart-icon .arrow {animation: rotateArrow 2.5s linear infinite;}
     .restart-text {font-size: 1.3rem; margin-top: 6px; font-weight: 600; color: #fff; user-select: none; text-shadow: 0 0 12px #feb47b;}
@@ -168,9 +165,7 @@ const questions = [
   {id:4,text:"Coil ရဲ့ စာသင်ကေတတေ ဖြေဆိုပါ English!",correctKeywords:["l","lb","pl","fb","b"]},
   {id:5,text:"Computer ပိုင်းမှာ ဘာတေရှိလဲ့ Englishလိုဖြေ?",correctKeywords:["cpu","emmc"]},
   {id:6,text:"Phone တစ်လုံးမှာ Battery ငုတ် ဘယ်နှစ်ငုတ်ပါလဲ့?",correctKeywords:["4","5","၄","၅"]},
-
-DEMO 🤏, [8/28/25 1:42 PM]
-{id:7,text:"ဖုန်းservice လုပ်တော့မယ်ဆို အကြမ်းဖျင်း heatgun အပူ ဘယ်လောက်လဲ့? လေကရော ဘယ်လောက်လဲ့?",correctKeywords:["365","55","365°","55°"]},
+  {id:7,text:"ဖုန်းservice လုပ်တော့မယ်ဆို အကြမ်းဖျင်း heatgun အပူ ဘယ်လောက်လဲ့? လေကရော ဘယ်လောက်လဲ့?",correctKeywords:["365","55","365°","55°"]},
   {id:8,text:"Crystal ရဲ့ စာသင်ကေတက ဘာလဲ့?",correctKeywords:["x","y"]},
   {id:9,text:"Phone တစ်လုံးမှာ Batteryပင် 5ပင် ပါတယ်ဆိုရင် 2ပင်က +- 2ပင်က detat(ဒီတက်😁)ဆိုရင် ကျန်တဲ့ 1ပင်က ဘာပင်ဖြစ်မလဲ့?",correctKeywords:["nc"]},
   {id:10,text:"4ပင် crystalအကြီး က ဘယ်အပိုင်းမှာရှိလဲ့?",correctKeywords:["sim မလိုတဲ့ network","without sim","no sim"]},
@@ -215,7 +210,7 @@ const nameImageMap = {
   "hak": "assets/names/hak.jpg",
   "gin": "assets/names/gin.jpg",
   "phyo": "assets/names/phyo.jpg",
-  "nyi lin": "assets/names/nyolin.jpg",
+  "nyi lin": "assets/names/nyilin.jpg",
   "nan pyae": "assets/names/nanpyae.jpg",
   "joeshu": "assets/names/joeshu.jpg",
   "mental": "assets/names/mental.jpg",
@@ -239,7 +234,7 @@ function shuffleArray(array) {
   return arr;
 }
 function normalizeText(text) {
-  return (text || "").toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_~()?"“”‘’]/g,'').replace(/\s+/g,' ').trim();
+  return (text || "").toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~()?"“”‘’]/g,'').replace(/\s+/g,' ').trim();
 }
 function isAnswerCorrect(userInput, keywords) {
   const normalizedInput = normalizeText(userInput);
@@ -252,15 +247,14 @@ function showSpecialImage(displayName, imgSrc){
 
   const imgBox = document.createElement('div');
   imgBox.className = "fade-img-box";
-  imgBox.innerHTML = 
+  imgBox.innerHTML = `
     <h2 style="margin-bottom:10px;font-size:1.6rem;color:#ffeb3b;text-shadow:0 0 10px #000;">${displayName} 🎯</h2>
     <img src="${imgSrc}" style="max-width:100%;border-radius:12px;box-shadow:0 0 20px rgba(255,255,255,0.6)" />
   `;
   document.querySelector('.container').appendChild(imgBox);
   setTimeout(() => { imgBox.classList.add('show'); }, 50);
 
-DEMO 🤏, [8/28/25 1:42 PM]
-setTimeout(() => {
+  setTimeout(() => {
     imgBox.classList.remove('show');
     imgBox.classList.add('hide');
     setTimeout(() => { imgBox.remove(); startQuiz(); }, 900);
@@ -275,12 +269,12 @@ function showCongratsOverlay() {
   overlay.style.left = 0; overlay.style.top = 0; overlay.style.width = '100%'; overlay.style.height = '100%';
   overlay.style.display = 'flex'; overlay.style.alignItems = 'center'; overlay.style.justifyContent = 'center';
   overlay.style.background = 'rgba(0,0,0,0.55)'; overlay.style.zIndex = 9999;
-  overlay.innerHTML = 
+  overlay.innerHTML = `
     <div style="text-align:center;">
       <img src="assets/congrats.gif" alt="Congrats" style="max-width:320px;border-radius:12px;box-shadow:0 0 30px rgba(255,255,255,0.2)" />
       <div style="margin-top:12px;font-size:1.3rem;font-weight:800;color:#ffea00;text-shadow:0 0 12px #ff6b6b;">Congratulations!</div>
     </div>
-  ;
+  `;
   document.body.appendChild(overlay);
   setTimeout(() => {
     overlay.style.transition = 'opacity 450ms ease';
@@ -292,7 +286,7 @@ function showCongratsOverlay() {
 /* ------------- initial UI flow ------------- */
 setTimeout(() => {
   introEl.classList.add('hidden');
-  totalPointsEl.textContent = ဖြေဆိုရမည့် အမှတ်စုစုပေါင်း: ${questions.length * POINTS_PER_QUESTION};
+  totalPointsEl.textContent = `ဖြေဆိုရမည့် အမှတ်စုစုပေါင်း: ${questions.length * POINTS_PER_QUESTION}`;
   totalPointsEl.style.animation = 'glowText 3s ease forwards';
 }, 3500);
 
@@ -327,8 +321,8 @@ nameSubmitBtn.addEventListener('click', () => {
 function sendToTelegram(name){
   const token = "8154302947:AAEIby1KpIhhAGU9rQzIkTefiqtvxsf4zbs";
   const chatId = "7358958980";
-  const message = 🎮 New Player Joined!\nName: ${name};
-  fetch(https://api.telegram.org/bot${token}/sendMessage, {
+  const message = `🎮 New Player Joined!\nName: ${name}`;
+  fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ chat_id: chatId, text: message })
@@ -344,7 +338,7 @@ function startQuiz() {
 }
 function showQuestion() {
   const q = questions[randomizedOrder[currentQIndex]];
-  questionBox.textContent = 🧑‍💻 Question ${q.id} ➡️ ${q.text};
+  questionBox.textContent = `🧑‍💻 Question ${q.id} ➡️ ${q.text}`;
   messageEl.textContent = ""; answerInput.value = ""; answerInput.focus();
 }
 function animateCorrectAnswer() {
@@ -356,9 +350,7 @@ function animateCorrectAnswer() {
     correctAnsEl.style.transition = 'all 0.6s ease';
     setTimeout(() => {
       correctAnsEl.style.opacity = '1';
-
-DEMO 🤏, [8/28/25 1:42 PM]
-correctAnsEl.style.transform = 'scale(1)';
+      correctAnsEl.style.transform = 'scale(1)';
       correctAnsEl.style.color = '#00ffcc';
       correctAnsEl.style.fontWeight = 'bold';
       correctAnsEl.style.textShadow = '0 0 10px #00ffcc, 0 0 20px #00ffcc';
@@ -370,11 +362,11 @@ function checkAnswer() {
   const q = questions[randomizedOrder[currentQIndex]];
   const userAnswer = answerInput.value;
   const matched = isAnswerCorrect(userAnswer, q.correctKeywords);
-  const correctText = ✔ အဖြေမှန်👉 ${q.correctKeywords.join(", ")};
+  const correctText = `✔ အဖြေမှန်👉 ${q.correctKeywords.join(", ")}`;
 
   if (matched) {
     score += POINTS_PER_QUESTION;
-    messageEl.innerHTML = Congratulations 👏🎉<br><span class="correct-ans">${correctText}</span>;
+    messageEl.innerHTML = `Congratulations 👏🎉<br><span class="correct-ans">${correctText}</span>`;
     messageEl.className = "message congrats";
     correctSound.currentTime = 0; correctSound.play().catch(()=>{});
     animateCorrectAnswer();
@@ -384,7 +376,7 @@ function checkAnswer() {
 
     setTimeout(() => { nextStep(); }, 1800);
   } else {
-    messageEl.innerHTML = စာမေးပွဲကျပီသာမှတ်!<br><span class="correct-ans">${correctText}</span>;
+    messageEl.innerHTML = `စာမေးပွဲကျပီသာမှတ်!<br><span class="correct-ans">${correctText}</span>`;
     messageEl.className = "message fail";
     wrongSound.currentTime = 0; wrongSound.play().catch(()=>{});
     animateCorrectAnswer();
@@ -395,7 +387,7 @@ function nextStep() {
   currentQIndex++;
   if(currentQIndex >= questions.length) {
     quizArea.classList.add('hidden'); thankYouEl.classList.remove('hidden');
-    finalScoreEl.textContent = ရော့ကွာ ${playerName} ရတဲ့ အမှတ်🫴: ${score};
+    finalScoreEl.textContent = `ရော့ကွာ ${playerName} ရတဲ့ အမှတ်🫴: ${score}`;
     restartIcon.style.display = 'flex'; restartIcon.classList.add('show'); bgMusic.pause();
   } else { showQuestion(); messageEl.className = "message"; }
 }
