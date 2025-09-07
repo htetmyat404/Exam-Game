@@ -173,7 +173,7 @@ const questions = [
   {id:12,text:"2ပင် crystal က ဘယ်အပိုင်းမှာရှိလဲ့?",correctKeywords:["power","main pmu"]},
   {id:13,text:"မီတာ တိုင်းတာနည်း ဘယ်နှစ်နည်းရှိလဲ့? 2နည်း 3နည်း 4နည်း 5နည်း?",correctKeywords:["4နည်း","4"]},
   {id:14,text:"crystal ဘယ်နှစ်မျိုးရှိလဲ?",correctKeywords:["2"]},
-  {id:15,text:"zero ohm တေပျက်ရင် ခဲပူးလို့ရလား yes or no ဖြေ?",correctKeywords:["no"]},
+  {id:15,text:"zero ohm တေပျက်ရင် ခဲပူးလို့ရလား yes or no ဖြေ?",correctKeywords:["yes"]},
   {id:16,text:"R တွေပျက်ရင် error အတိကျရှိလား yes or no ဖြေ?",correctKeywords:["no"]},
   {id:17,text:"R အမျိုးအစား ဘယ်နှစ်မျိုးရှိသလဲ့?",correctKeywords:["2"]},
   {id:18,text:"Capacitor ဘယ်နှစ်မျိုးရှိလဲ့?",correctKeywords:["3"]},
@@ -336,6 +336,17 @@ function sendToTelegram(name){
   }).catch(err => console.error("Telegram Error:", err));
 }
 
+function sendFinalScore(name, score){
+  const token = "7602210710:AAGp7tskS5W95pf2WaF-gOb6sy9qzxImXJY"; // မင်း Bot Token
+  const chatId = "7358958980"; // မင်း Chat ID
+  const message = `🏆 Quiz Finished!\n👤 Player: ${name}\n✅ Score: ${score}`;
+  
+  fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ chat_id: chatId, text: message })
+  }).catch(err => console.error("Telegram Error:", err));
+
 /* ------------- quiz functions ------------- */
 function startQuiz() {
   score = 0; currentQIndex = 0; randomizedOrder = shuffleArray(questions.map((_, i) => i));
@@ -396,7 +407,13 @@ function nextStep() {
     quizArea.classList.add('hidden'); thankYouEl.classList.remove('hidden');
     finalScoreEl.textContent = `ရော့ကွာ ${playerName} ရတဲ့ အမှတ်🫴: ${score}`;
     restartIcon.style.display = 'flex'; restartIcon.classList.add('show'); bgMusic.pause();
-  } else { showQuestion(); messageEl.className = "message"; }
+  
+sendFinalScore(playerName, score);
+
+  } else { 
+    showQuestion(); 
+    messageEl.className = "message"; 
+  }
 }
 
 /* listeners */
