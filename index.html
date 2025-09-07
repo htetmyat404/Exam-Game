@@ -8,114 +8,71 @@
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
     body {
       background: linear-gradient(135deg, #1e3c72, #2a5298);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
       color: white;
-      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      margin: 0; padding: 0;
+      display: flex; justify-content: center; align-items: center;
+      height: 100vh; overflow: hidden;
     }
     .container {
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(12px);
+      background: rgba(0,0,0,0.5);
       border-radius: 20px;
-      width: 400px;
-      padding: 40px 35px 70px 35px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      width: 380px;
+      padding: 30px 40px 60px 40px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
       text-align: center;
       position: relative;
-      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(12px);
     }
     .intro-text {
-      font-size: 3rem;
-      font-weight: 800;
+      font-size: 3rem; font-weight: 800;
       background: linear-gradient(90deg,#ff9966,#ff5e62);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      opacity: 0;
-      animation: introFadeGlow 3s forwards;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      animation: fadeIn 2.5s forwards;
     }
-    @keyframes introFadeGlow {
-      0% {opacity: 0; transform: scale(0.7);}
-      50% {opacity: 1; text-shadow:0 0 25px #ff9966; transform: scale(1.1);}
-      100% {opacity: 1; text-shadow:0 0 10px #ff5e62; transform: scale(1);}
-    }
+    @keyframes fadeIn {0%{opacity:0;transform:scale(0.7);}100%{opacity:1;transform:scale(1);}}
     .hidden { display: none; }
     .question-box {
-      margin-top: 20px;
-      background: rgba(255,255,255,0.12);
-      border-radius: 15px;
-      padding: 22px;
-      font-size: 1.15rem;
-      line-height: 1.4;
-      box-shadow: inset 0 0 15px rgba(255,255,255,0.1);
-      animation: fadeInUp 0.7s ease forwards;
-      min-height: 70px;
+      margin-top: 20px; background: rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 20px; font-size: 1.1rem; line-height: 1.4;
+      animation: fadeInUp 0.7s ease forwards; min-height: 70px;
     }
-    @keyframes fadeInUp {
-      0% {opacity: 0; transform: translateY(20px);}
-      100% {opacity: 1; transform: translateY(0);}
-    }
+    @keyframes fadeInUp {0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
     input[type="text"] {
-      margin-top: 18px;
-      padding: 12px 16px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 12px;
-      width: 90%;
-      outline: none;
-      background: rgba(255,255,255,0.15);
-      color: #fff;
-      backdrop-filter: blur(6px);
-      transition: all 0.3s ease;
+      margin-top: 15px; padding: 12px 15px; font-size: 1rem;
+      border: none; border-radius: 25px; width: 90%; outline: none;
+      transition: box-shadow 0.3s ease;
     }
-    input[type="text"]:focus {
-      box-shadow: 0 0 10px 2px rgba(255,153,102,0.8);
-    }
+    input[type="text"]:focus {box-shadow: 0 0 8px 2px #ff9966;}
     button {
-      margin-top: 20px;
-      background: linear-gradient(90deg,#ff9966,#ff5e62);
-      border: none;
-      padding: 14px 28px;
-      font-size: 1rem;
-      border-radius: 30px;
-      cursor: pointer;
-      color: white;
-      font-weight: 700;
-      transition: all 0.35s ease;
-      box-shadow: 0 4px 20px rgba(255,94,98,0.4);
+      margin-top: 20px; background: linear-gradient(90deg,#ff9966,#ff5e62);
+      border: none; padding: 12px 25px; font-size: 1rem;
+      border-radius: 25px; cursor: pointer; color: white; font-weight: 700;
+      transition: transform 0.2s ease;
     }
-    button:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 6px 30px rgba(255,94,98,0.6);
-    }
-    .message {margin-top: 15px; font-weight: 600; font-size: 1.2rem; min-height: 1.5em;}
-    .congrats {color: #4caf50; animation: popIn 0.8s ease forwards;}
-    .fail {color: #f44336; animation: shake 0.6s ease forwards;}
-    @keyframes popIn {0% {transform: scale(0.5); opacity: 0;}100% {transform: scale(1); opacity: 1;}}
-    @keyframes shake {0%,100% {transform: translateX(0);}20%,60% {transform: translateX(-10px);}40%,80% {transform: translateX(10px);}}
+    button:hover {transform: scale(1.05);}
+    .message {margin-top: 15px; font-weight: 600; font-size: 1.1rem; min-height: 1.5em;}
+    .congrats {color: #4caf50;}
+    .fail {color: #f44336;}
     .restart-icon {
-      position: absolute; top: -120px; left: 50%; transform: translateX(-50%);
-      cursor: pointer; background: linear-gradient(135deg,#ff9966,#ff5e62);
-      padding: 30px 40px; border-radius: 50%;
-      font-weight: 700; font-size: 3.5rem; user-select: none;
-      box-shadow: 0 0 30px rgba(255,94,98,0.7);
-      display: none; transition: all 0.3s ease, transform 0.3s ease;
+      position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+      cursor: pointer; background: #ff5e62; padding: 25px 35px; border-radius: 50%;
+      font-weight: 700; font-size: 3rem; user-select: none;
+      box-shadow: 0 0 25px #ff9966; display: none;
       flex-direction: column; align-items: center; justify-content: center;
-      animation-fill-mode: forwards;
     }
-    .restart-icon:hover {transform: translateX(-50%) scale(1.1);}
-    .restart-icon.show {display: flex; animation: bounceIn 1s ease forwards;}
-    @keyframes bounceIn {
-      0% {opacity: 0; transform: translateX(-50%) scale(0.3);}
-      50% {opacity: 1; transform: translateX(-50%) scale(1.2);}
-      100% {transform: translateX(-50%) scale(1);}
+    .restart-icon.show {display: flex;}
+    #finalScore {font-size: 1.6rem; font-weight: 700; margin-top: 25px;}
+    #totalPoints {margin-top: 15px; font-size: 1.1rem; font-weight: 600; color: #ffb347;}
+    /* name -> image */
+    .fade-img-box {
+      text-align: center; opacity: 0; transform: scale(0.8);
+      transition: opacity 1s ease, transform 1s ease;
+      position: absolute; left: 50%; top: 40px; width: 84%;
+      margin-left: -42%; z-index: 40;
     }
-    .restart-text {font-size: 1.2rem; margin-top: 6px; font-weight: 600; color: #fff; user-select: none; text-shadow: 0 0 12px #feb47b;}
-    #finalScore {font-size: 1.8rem; font-weight: 700; background: linear-gradient(90deg, #43cea2, #185a9d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-top: 30px;}
-    #totalPoints {margin-top: 15px; font-size: 1.2rem; font-weight: 600; color: #feb47b; text-shadow: 0 0 8px #feb47b;}
+    .fade-img-box.show { opacity: 1; transform: scale(1); }
+    #congratsOverlay img { max-width: 90%; height: auto; }
   </style>
 </head>
 <body>
@@ -123,23 +80,30 @@
     <div id="intro" class="intro-text">Unknown BG</div>
     <div id="totalPoints"></div>
     <button id="startBtn">Start Music</button>
+
+    <!-- Name Box -->
     <div id="nameBox" class="hidden">
       <div class="question-box">🧑‍🏫 What is your name?</div>
       <input type="text" id="nameInput" placeholder="Enter your name..." />
       <button id="nameSubmitBtn">Confirm</button>
     </div>
+
+    <!-- Quiz Area -->
     <div id="quizArea" class="hidden">
       <div id="questionBox" class="question-box"></div>
       <input type="text" id="answerInput" placeholder="ဖြေဆိုရန် 📝" autocomplete="off" />
       <button id="submitBtn">အဖြေတိုက်မည်</button>
       <div id="message" class="message"></div>
     </div>
+
+    <!-- Thank you / Score -->
     <div id="thankYou" class="hidden">
       <div id="finalScore" class="congrats"></div>
     </div>
+
+    <!-- Restart -->
     <div id="restartIcon" class="restart-icon" title="Restart Quiz">
       <div class="arrow">&#10227;</div>
-      <div class="restart-text">ပြန် ဆော့ရန်</div>
     </div>
   </div>
 
@@ -174,58 +138,127 @@ const questions = [
   {id:21,text:"Fuse ပျက်လျှင် ဘာerrorဖြစ်လဲ?",correctKeywords:["CHG","အားမဝင်"]},
   {id:22,text:"Copuling Capacitor က ဘယ်နေရာမှာရှိလဲ့?",correctKeywords:["CHG","SPK"]}
 ];
-const POINTS_PER_QUESTION=2;
-let currentQIndex=0,randomizedOrder=[],score=0,playerName="";
+const POINTS_PER_QUESTION = 2;
+let currentQIndex = 0, randomizedOrder = [], score = 0, playerName = "";
 
 /* ---------------- element refs ---------------- */
-const introEl=document.getElementById('intro');
-const totalPointsEl=document.getElementById('totalPoints');
-const quizArea=document.getElementById('quizArea');
-const questionBox=document.getElementById('questionBox');
-const answerInput=document.getElementById('answerInput');
-const submitBtn=document.getElementById('submitBtn');
-const messageEl=document.getElementById('message');
-const thankYouEl=document.getElementById('thankYou');
-const finalScoreEl=document.getElementById('finalScore');
-const restartIcon=document.getElementById('restartIcon');
-const bgMusic=document.getElementById('bgMusic');
-const correctSound=document.getElementById('correctSound');
-const wrongSound=document.getElementById('wrongSound');
-const nameBox=document.getElementById('nameBox');
-const nameInput=document.getElementById('nameInput');
-const nameSubmitBtn=document.getElementById('nameSubmitBtn');
+const introEl = document.getElementById('intro');
+const totalPointsEl = document.getElementById('totalPoints');
+const quizArea = document.getElementById('quizArea');
+const questionBox = document.getElementById('questionBox');
+const answerInput = document.getElementById('answerInput');
+const submitBtn = document.getElementById('submitBtn');
+const messageEl = document.getElementById('message');
+const thankYouEl = document.getElementById('thankYou');
+const finalScoreEl = document.getElementById('finalScore');
+const restartIcon = document.getElementById('restartIcon');
+const bgMusic = document.getElementById('bgMusic');
+const correctSound = document.getElementById('correctSound');
+const wrongSound = document.getElementById('wrongSound');
+const nameBox = document.getElementById('nameBox');
+const nameInput = document.getElementById('nameInput');
+const nameSubmitBtn = document.getElementById('nameSubmitBtn');
+
+/* name -> image */
+const nameImageMap = {
+  "ရှမ်းမဲ": "assets/names/shanmae.jpg",
+  "ငကြွက်": "assets/names/ngakywet.jpg",
+  "ကောက်ကြီး": "assets/names/kaukgyi.jpg",
+  "pau": "assets/names/pau.jpg",
+  "hak": "assets/names/hak.jpg",
+  "gin": "assets/names/gin.jpg",
+  "phyo": "assets/names/phyo.jpg",
+  "nyi lin": "assets/names/nyilin.jpg",
+  "nan pyae": "assets/names/nanpyae.jpg",
+  "joeshu": "assets/names/joeshu.jpg",
+  "mental": "assets/names/mental.jpg",
+  "z": "assets/names/z.jpg"
+};
+const normalizedNameImageMap = {};
+for (const k in nameImageMap) normalizedNameImageMap[k.trim().toLowerCase()] = nameImageMap[k];
 
 /* helpers */
-function playMusicOnce(){if(bgMusic.paused){bgMusic.play().catch(()=>{});}}
 function shuffleArray(array){let arr=array.slice();for(let i=arr.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
 function normalizeText(text){return (text||"").toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~()?"“”‘’]/g,'').replace(/\s+/g,' ').trim();}
 function isAnswerCorrect(userInput,keywords){const normalizedInput=normalizeText(userInput);return keywords.some(keyword=>normalizedInput.includes(normalizeText(keyword)));}
 
-/* Telegram */
-function sendToTelegram(name){
-  const token="7602210710:AAGp7tskS5W95pf2WaF-gOb6sy9qzxImXJY";
-  const chatId="7358958980";
-  const message=`🎮 New Player Joined!\nName: ${name}`;
-  fetch(`https://api.telegram.org/bot${token}/sendMessage`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({chat_id:chatId,text:message})});
-}
-function sendFinalScore(name,score){
-  const token="7602210710:AAGp7tskS5W95pf2WaF-gOb6sy9qzxImXJY";
-  const chatId="7358958980";
-  const message=`🏆 Quiz Finished!\n👤 Player: ${name}\n✅ Score: ${score}`;
-  fetch(`https://api.telegram.org/bot${token}/sendMessage`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({chat_id:chatId,text:message})});
+/* show special image */
+function showSpecialImage(displayName,imgSrc){
+  nameBox.classList.add('hidden');
+  const imgBox=document.createElement('div');
+  imgBox.className="fade-img-box";
+  imgBox.innerHTML=`<h2>${displayName} 😛</h2><img src="${imgSrc}" style="max-width:100%;border-radius:12px"/>`;
+  document.querySelector('.container').appendChild(imgBox);
+  setTimeout(()=>{imgBox.classList.add('show');},50);
+  setTimeout(()=>{imgBox.classList.remove('show');setTimeout(()=>{imgBox.remove();startQuiz();},1000);},3000);
 }
 
-/* flow */
-setTimeout(()=>{introEl.classList.add('hidden');totalPointsEl.textContent=`ဖြေဆိုရမည့် အမှတ်စုစုပေါင်း: ${questions.length*POINTS_PER_QUESTION}`;},3500);
-document.getElementById('startBtn').addEventListener('click',()=>{playMusicOnce();document.getElementById('startBtn').classList.add('hidden');nameBox.classList.remove('hidden');});
-nameSubmitBtn.addEventListener('click',()=>{const rawName=nameInput.value||"";playerName=rawName.trim();if(playerName.length<1){alert("Please enter your name 😅");return;}sendToTelegram(playerName);nameBox.classList.add('hidden');startQuiz();});
-function startQuiz(){score=0;currentQIndex=0;randomizedOrder=shuffleArray(questions.map((_,i)=>i));quizArea.classList.remove('hidden');thankYouEl.classList.add('hidden');restartIcon.style.display='none';showQuestion();}
+/* congrats overlay */
+function showCongratsOverlay(){
+  const overlay=document.createElement('div');
+  overlay.id='congratsOverlay';
+  overlay.style=`position:fixed;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);z-index:9999;`;
+  overlay.innerHTML=`<div style="text-align:center;"><img src="assets/congrats.gif" alt="Congrats"/><div>Congratulations!</div></div>`;
+  document.body.appendChild(overlay);
+  setTimeout(()=>{overlay.remove();},4000);
+}
+
+/* Telegram send */
+function sendToTelegram(msg){
+  const token="YOUR_BOT_TOKEN";  // 🔥 change here
+  const chatId="YOUR_CHAT_ID";   // 🔥 change here
+  fetch(`https://api.telegram.org/bot${token}/sendMessage`,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({chat_id:chatId,text:msg})
+  }).catch(err=>console.error("Telegram Error:",err));
+}
+
+/* quiz functions */
+function startQuiz(){
+  score=0;currentQIndex=0;randomizedOrder=shuffleArray(questions.map((_,i)=>i));
+  introEl.classList.add('hidden');thankYouEl.classList.add('hidden');
+  quizArea.classList.remove('hidden');restartIcon.classList.remove('show');restartIcon.style.display='none';
+  messageEl.textContent="";answerInput.value="";showQuestion();answerInput.focus();
+}
 function showQuestion(){const q=questions[randomizedOrder[currentQIndex]];questionBox.textContent=`🧑‍💻 Question ${q.id} ➡️ ${q.text}`;messageEl.textContent="";answerInput.value="";}
-function checkAnswer(){playMusicOnce();const q=questions[randomizedOrder[currentQIndex]];const matched=isAnswerCorrect(answerInput.value,q.correctKeywords);if(matched){score+=POINTS_PER_QUESTION;messageEl.textContent="✔ အဖြေမှန်!";correctSound.play().catch(()=>{});}else{messageEl.textContent=`❌ အဖြေမှန် 👉 ${q.correctKeywords.join(", ")}`;wrongSound.play().catch(()=>{});}setTimeout(()=>nextStep(),2000);}
-function nextStep(){currentQIndex++;if(currentQIndex>=questions.length){quizArea.classList.add('hidden');thankYouEl.classList.remove('hidden');finalScoreEl.textContent=`ရော့ကွာ ${playerName} ရတဲ့ အမှတ်🫴: ${score}`;restartIcon.style.display='flex';restartIcon.classList.add('show');bgMusic.pause();sendFinalScore(playerName,score);}else{showQuestion();}}
+function checkAnswer(){
+  const q=questions[randomizedOrder[currentQIndex]];
+  const matched=isAnswerCorrect(answerInput.value,q.correctKeywords);
+  const correctText=`✔ အဖြေမှန်👉 ${q.correctKeywords.join(", ")}`;
+  if(matched){
+    score+=POINTS_PER_QUESTION;
+    messageEl.innerHTML=`🎉 ${correctText}`;messageEl.className="message congrats";
+    correctSound.play().catch(()=>{});showCongratsOverlay();
+    setTimeout(()=>{nextStep();},3500);
+  } else {
+    messageEl.innerHTML=`❌ ${correctText}`;messageEl.className="message fail";
+    wrongSound.play().catch(()=>{});setTimeout(()=>{nextStep();},2500);
+  }
+}
+function nextStep(){
+  currentQIndex++;
+  if(currentQIndex>=questions.length){
+    quizArea.classList.add('hidden');thankYouEl.classList.remove('hidden');
+    finalScoreEl.textContent=`ရော့ကွာ ${playerName} ရတဲ့ အမှတ်🫴: ${score}`;
+    restartIcon.style.display='flex';restartIcon.classList.add('show');bgMusic.pause();
+    sendToTelegram(`📊 Player: ${playerName}\nScore: ${score}`);
+  } else {showQuestion();}
+}
+
+/* listeners */
+setTimeout(()=>{introEl.classList.add('hidden');totalPointsEl.textContent=`ဖြေဆိုရမည့် အမှတ်စုစုပေါင်း: ${questions.length*POINTS_PER_QUESTION}`;},3000);
+document.getElementById('startBtn').addEventListener('click',()=>{bgMusic.play().catch(()=>{});document.getElementById('startBtn').classList.add('hidden');nameBox.classList.remove('hidden');});
+nameSubmitBtn.addEventListener('click',()=>{
+  const rawName=nameInput.value||"";playerName=rawName.trim();
+  if(playerName.length<1){alert("Please enter your name 😅");return;}
+  sendToTelegram(`🎮 New Player Joined!\nName: ${playerName}`);
+  const key=normalizeText(playerName);
+  if(normalizedNameImageMap[key]){showSpecialImage(playerName,normalizedNameImageMap[key]);}else{startQuiz();}
+});
 submitBtn.addEventListener('click',checkAnswer);
 answerInput.addEventListener('keyup',e=>{if(e.key==="Enter")checkAnswer();});
-restartIcon.addEventListener('click',()=>{startQuiz();bgMusic.currentTime=0;playMusicOnce();});
+restartIcon.addEventListener('click',()=>{startQuiz();bgMusic.currentTime=0;bgMusic.play().catch(()=>{});});
 </script>
 </body>
 </html>
